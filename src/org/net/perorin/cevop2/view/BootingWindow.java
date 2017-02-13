@@ -8,9 +8,9 @@ import java.awt.Window;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import org.net.perorin.cevop2.parts.CeCommon;
 import org.net.perorin.cv.CV;
 import org.net.perorin.cv.CVImage;
+import org.net.perorin.swingParts.parts.CeCommon;
 
 public class BootingWindow {
 

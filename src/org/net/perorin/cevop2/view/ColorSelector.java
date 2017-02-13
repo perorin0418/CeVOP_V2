@@ -24,11 +24,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.net.perorin.cevop2.contoroller.Controller;
-import org.net.perorin.cevop2.parts.CeButton;
-import org.net.perorin.cevop2.parts.CeCommon;
-import org.net.perorin.cevop2.parts.CePanel;
-import org.net.perorin.cevop2.parts.CeTextField;
 import org.net.perorin.cv.CVImage;
+import org.net.perorin.swingParts.parts.CeButton;
+import org.net.perorin.swingParts.parts.CeCommon;
+import org.net.perorin.swingParts.parts.CePanel;
+import org.net.perorin.swingParts.parts.CeTextField;
 
 public class ColorSelector implements MouseListener, MouseMotionListener, ChangeListener, KeyListener {
 

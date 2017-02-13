@@ -9,8 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import org.net.perorin.cevop2.parts.CeButton;
-import org.net.perorin.cevop2.parts.CeCommon;
+import org.net.perorin.swingParts.parts.CeButton;
+import org.net.perorin.swingParts.parts.CeCommon;
 
 public class MessageDialog {
 

@@ -14,11 +14,11 @@ import javax.swing.text.Document;
 
 import org.net.perorin.cevop2.model.Preset;
 import org.net.perorin.cevop2.model.PresetUtilty;
-import org.net.perorin.cevop2.parts.CeButton;
-import org.net.perorin.cevop2.parts.CeCombo;
-import org.net.perorin.cevop2.parts.CeCommon;
-import org.net.perorin.cevop2.parts.CeTextField;
-import org.net.perorin.cevop2.parts.stringLimitation.TabCharLimitation;
+import org.net.perorin.swingParts.parts.CeButton;
+import org.net.perorin.swingParts.parts.CeCombo;
+import org.net.perorin.swingParts.parts.CeCommon;
+import org.net.perorin.swingParts.parts.CeTextField;
+import org.net.perorin.swingParts.parts.stringLimitation.TabCharLimitation;
 
 public class PresetSaver {
 

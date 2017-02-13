@@ -29,16 +29,16 @@ import org.net.perorin.cevop2.contoroller.Controller;
 import org.net.perorin.cevop2.model.Model;
 import org.net.perorin.cevop2.model.Preset;
 import org.net.perorin.cevop2.model.PresetUtilty;
-import org.net.perorin.cevop2.parts.CeButton;
-import org.net.perorin.cevop2.parts.CeCheckbox;
-import org.net.perorin.cevop2.parts.CeCombo;
-import org.net.perorin.cevop2.parts.CeCommon;
-import org.net.perorin.cevop2.parts.CeFileIcon;
-import org.net.perorin.cevop2.parts.CePanel;
-import org.net.perorin.cevop2.parts.CeScrollPane;
-import org.net.perorin.cevop2.parts.CeTextArea;
-import org.net.perorin.cevop2.parts.CeTextField;
-import org.net.perorin.cevop2.parts.stringLimitation.TabCharLimitation;
+import org.net.perorin.swingParts.parts.CeButton;
+import org.net.perorin.swingParts.parts.CeCheckbox;
+import org.net.perorin.swingParts.parts.CeCombo;
+import org.net.perorin.swingParts.parts.CeCommon;
+import org.net.perorin.swingParts.parts.CeFileIcon;
+import org.net.perorin.swingParts.parts.CePanel;
+import org.net.perorin.swingParts.parts.CeScrollPane;
+import org.net.perorin.swingParts.parts.CeTextArea;
+import org.net.perorin.swingParts.parts.CeTextField;
+import org.net.perorin.swingParts.parts.stringLimitation.TabCharLimitation;
 import org.net.perorin.toolkit.FileOperator;
 
 public class View {
@@ -52,7 +52,7 @@ public class View {
 	public int i;
 
 	public JFrame frame; // フレーム
-	public CeScrollPane textAreaScroll; // テキストエリアのスクロールバー
+	public org.net.perorin.swingParts.parts.CeScrollPane textAreaScroll; // テキストエリアのスクロールバー
 	public CeTextArea txtArea; // テキストエリア
 	public CeButton btnVoiceListen; // 試聴
 	public CeButton btnVoiceSave; // 音声保存
