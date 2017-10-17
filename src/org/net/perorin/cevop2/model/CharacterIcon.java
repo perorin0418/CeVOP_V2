@@ -6,7 +6,7 @@ import org.net.perorin.cevop2.exception.CantMergeImageException;
 
 public class CharacterIcon {
 
-	private final String imgPath = "./img/";
+	private final String imgPath = "./META-INF/img/";
 	private ImageIcon icon;
 	private ImageIcon iconHide;
 	private boolean isHide = false;

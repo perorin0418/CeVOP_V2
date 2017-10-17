@@ -1,0 +1,5 @@
+﻿  stdafx.cpp
+  CeVIOCreativeStudioComTest.cpp
+c:\users\perorin\desktop\desktop\pleiades\workspace\cevop_v2\src\csrc\cevio\one\ceviocreativestudiocomtest\ceviocreativestudiocomtest\ceviocreativestudiocomtest.cpp(160): warning C4244: 'initializing': conversion from 'VARIANT_BOOL' to 'boolean', possible loss of data
+  Generating Code...
+  CeVIOCreativeStudioComTest.vcxproj -> C:\Users\perorin\Desktop\Desktop\pleiades\workspace\CeVOP_V2\src\csrc\cevio\one\CeVIOCreativeStudioComTest\Debug\CeVIOCreativeStudioComTest.exe

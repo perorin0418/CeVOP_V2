@@ -10,43 +10,74 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.net.perorin.cevio.IaDriver;
+import org.net.perorin.cevio.OneDriver;
+import org.net.perorin.cevio.SasaraDriver;
+import org.net.perorin.cevio.TakahashiDriver;
+import org.net.perorin.cevio.TsudumiDriver;
 import org.net.perorin.voiceroid.Voiceroid;
 
 public class PresetUtilty {
 
-	static final String SASARA = "さとうささら";
-	static final String TSUDUMI = "すずきつづみ";
-	static final String TAKAHASHI = "タカハシ";
-	static final String ONE = "ONE";
-
 	public static List<Preset> loadPreset(String cast) throws IOException {
 		List<Preset> list = new ArrayList<Preset>();
 		File file = null;
-		if (cast.equals(SASARA)) {
-			file = new File("./presets/sasara.preset");
-		} else if (cast.equals(TSUDUMI)) {
-			file = new File("./presets/tsudumi.preset");
-		} else if (cast.equals(TAKAHASHI)) {
-			file = new File("./presets/takahashi.preset");
-		} else if (cast.equals(ONE)) {
-			file = new File("./presets/one.preset");
-		} else if (cast.equals(Voiceroid.YUKARI_NAME)) {
-			file = new File("./presets/yukari.preset");
-		} else if (cast.equals(Voiceroid.MAKI_NAME)) {
-			file = new File("./presets/maki.preset");
-		} else if (cast.equals(Voiceroid.ZUNKO_NAME)) {
-			file = new File("./presets/zunko.preset");
-		} else if (cast.equals(Voiceroid.AKANE_NAME)) {
-			file = new File("./presets/akane.preset");
-		} else if (cast.equals(Voiceroid.AOI_NAME)) {
-			file = new File("./presets/aoi.preset");
-		} else if (cast.equals(Voiceroid.YOSHIDA_NAME)) {
-			file = new File("./presets/yoshida.preset");
-		} else if (cast.equals(Voiceroid.SEIKA_NAME)) {
-			file = new File("./presets/seika.preset");
-		} else if (cast.equals(Voiceroid.KIRITAN_NAME)) {
-			file = new File("./presets/kiritan.preset");
+		switch (cast) {
+		case SasaraDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case TsudumiDriver.CAST_NAME:
+			file = new File("./META-INF/presets/tsudumi.preset");
+			break;
+
+		case TakahashiDriver.CAST_NAME:
+			file = new File("./META-INF/presets/takahashi.preset");
+			break;
+
+		case OneDriver.CAST_NAME:
+			file = new File("./META-INF/presets/one.preset");
+			break;
+
+		case IaDriver.CAST_NAME:
+			file = new File("./META-INF/presets/ia.preset");
+			break;
+
+		case Voiceroid.YUKARI_NAME:
+			file = new File("./META-INF/presets/yukari.preset");
+
+		case Voiceroid.MAKI_NAME:
+			file = new File("./META-INF/presets/maki.preset");
+			break;
+
+		case Voiceroid.ZUNKO_NAME:
+			file = new File("./META-INF/presets/zunko.preset");
+			break;
+
+		case Voiceroid.AKANE_NAME:
+			file = new File("./META-INF/presets/akane.preset");
+			break;
+
+		case Voiceroid.AOI_NAME:
+			file = new File("./META-INF/presets/aoi.preset");
+			break;
+
+		case Voiceroid.YOSHIDA_NAME:
+			file = new File("./META-INF/presets/yoshida.preset");
+			break;
+
+		case Voiceroid.SEIKA_NAME:
+			file = new File("./META-INF/presets/seika.preset");
+			break;
+
+		case Voiceroid.KIRITAN_NAME:
+			file = new File("./META-INF/presets/kiritan.preset");
+			break;
+
+		default:
+			break;
 		}
+
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String buf;
 		String[] bufArray;
@@ -81,30 +112,61 @@ public class PresetUtilty {
 
 	public static void savePreset(String cast, List<Preset> list) throws IOException {
 		File file = null;
-		if (cast.equals(SASARA)) {
-			file = new File("./presets/sasara.preset");
-		} else if (cast.equals(TSUDUMI)) {
-			file = new File("./presets/tsudumi.preset");
-		} else if (cast.equals(TAKAHASHI)) {
-			file = new File("./presets/takahashi.preset");
-		} else if (cast.equals(ONE)) {
-			file = new File("./presets/one.preset");
-		} else if (cast.equals(Voiceroid.YUKARI_NAME)) {
-			file = new File("./presets/yukari.preset");
-		} else if (cast.equals(Voiceroid.MAKI_NAME)) {
-			file = new File("./presets/maki.preset");
-		} else if (cast.equals(Voiceroid.ZUNKO_NAME)) {
-			file = new File("./presets/zunko.preset");
-		} else if (cast.equals(Voiceroid.AKANE_NAME)) {
-			file = new File("./presets/akane.preset");
-		} else if (cast.equals(Voiceroid.AOI_NAME)) {
-			file = new File("./presets/aoi.preset");
-		} else if (cast.equals(Voiceroid.YOSHIDA_NAME)) {
-			file = new File("./presets/yoshida.preset");
-		} else if (cast.equals(Voiceroid.SEIKA_NAME)) {
-			file = new File("./presets/seika.preset");
-		} else if (cast.equals(Voiceroid.KIRITAN_NAME)) {
-			file = new File("./presets/kiritan.preset");
+		switch (cast) {
+		case SasaraDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case TsudumiDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case TakahashiDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case OneDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case IaDriver.CAST_NAME:
+			file = new File("./META-INF/presets/sasara.preset");
+			break;
+
+		case Voiceroid.YUKARI_NAME:
+			file = new File("./META-INF/presets/yukari.preset");
+			break;
+
+		case Voiceroid.MAKI_NAME:
+			file = new File("./META-INF/presets/maki.preset");
+			break;
+
+		case Voiceroid.ZUNKO_NAME:
+			file = new File("./META-INF/presets/zunko.preset");
+			break;
+
+		case Voiceroid.AKANE_NAME:
+			file = new File("./META-INF/presets/akane.preset");
+			break;
+
+		case Voiceroid.AOI_NAME:
+			file = new File("./META-INF/presets/aoi.preset");
+			break;
+
+		case Voiceroid.YOSHIDA_NAME:
+			file = new File("./META-INF/presets/yoshida.preset");
+			break;
+
+		case Voiceroid.SEIKA_NAME:
+			file = new File("./META-INF/presets/seika.preset");
+			break;
+
+		case Voiceroid.KIRITAN_NAME:
+			file = new File("./META-INF/presets/kiritan.preset");
+			break;
+
+		default:
+			break;
 		}
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 		for (int i = 0; i < list.size(); i++) {

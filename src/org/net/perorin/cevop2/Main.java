@@ -1,5 +1,7 @@
 package org.net.perorin.cevop2;
 
+import java.awt.EventQueue;
+
 import org.net.perorin.cevop2.contoroller.Controller;
 import org.net.perorin.cevop2.view.BootingWindow;
 
@@ -12,7 +14,16 @@ public class Main {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		Controller.call(null, Controller.RUN);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Controller c = new Controller();
+					c.run();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		b.stop();
 	}
 }

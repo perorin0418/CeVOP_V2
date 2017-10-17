@@ -1,0 +1,9 @@
+﻿  CeVIOCreativeStudioComTest.cpp
+CeVIOCreativeStudioComTest.cpp(160): warning C4244: 'initializing': conversion from 'VARIANT_BOOL' to 'boolean', possible loss of data
+  stdafx.cpp
+  Generating code
+  121 of 122 functions (99.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  CeVIOCreativeStudioComTest.vcxproj -> C:\Users\perorin\Desktop\Desktop\pleiades\workspace\CeVOP_V2\src\csrc\cevio\one\CeVIOCreativeStudioComTest\Release\CeVIOCreativeStudioComTest.exe

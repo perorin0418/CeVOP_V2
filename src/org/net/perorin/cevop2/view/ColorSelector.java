@@ -33,8 +33,10 @@ import org.net.perorin.swingParts.parts.CeTextField;
 public class ColorSelector implements MouseListener, MouseMotionListener, ChangeListener, KeyListener {
 
 	public JFrame frame;
-	private final ImageIcon colorPallet = new ImageIcon("./img/parts/color.png");
-	private final CVImage colorPallet_cv = new CVImage("./img/parts/color.png");
+	public Controller c;
+
+	private final ImageIcon colorPallet = new ImageIcon("./META-INF/img/parts/color.png");
+	private final CVImage colorPallet_cv = new CVImage("./META-INF/img/parts/color.png");
 	private final BufferedImage colorPallet_bi = colorPallet_cv.getImageBuffer();
 	private final WritableRaster colorPallet_wr = colorPallet_bi.getRaster();
 	private BufferedImage biPreview = new BufferedImage(138, 45, BufferedImage.TYPE_INT_ARGB);
@@ -55,12 +57,12 @@ public class ColorSelector implements MouseListener, MouseMotionListener, Change
 	private CeButton btnOK;
 	private CeButton btnCancel;
 
-	public static void showColorSelector(Color color, View v, boolean isFontColor) {
+	public static void showColorSelector(View v, Controller c, boolean isFontColor) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					v.frame.setEnabled(false);
-					ColorSelector window = new ColorSelector(color, v, isFontColor);
+					ColorSelector window = new ColorSelector(v.fontColor, v, c, isFontColor);
 					window.frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -75,7 +77,9 @@ public class ColorSelector implements MouseListener, MouseMotionListener, Change
 	 *
 	 * @throws IOException
 	 */
-	private ColorSelector(Color color, View v, boolean isFontColor) {
+	private ColorSelector(Color color, View v, Controller c, boolean isFontColor) {
+		this.c = c;
+
 		int width = 460;
 		int height = 430;
 		this.isFontColor = isFontColor;
@@ -284,10 +288,10 @@ public class ColorSelector implements MouseListener, MouseMotionListener, Change
 	private void process_OK(View v) {
 		if (isFontColor) {
 			v.fontColor = new Color(Integer.parseInt(txtFldR.getText()), Integer.parseInt(txtFldG.getText()), Integer.parseInt(txtFldB.getText()), Integer.parseInt(txtFldA.getText()));
-			Controller.call(v, Controller.SUBTITLES_PREVIEW);
+			c.subtitlesPreview();
 		} else {
 			v.edgeColor = new Color(Integer.parseInt(txtFldR.getText()), Integer.parseInt(txtFldG.getText()), Integer.parseInt(txtFldB.getText()), Integer.parseInt(txtFldA.getText()));
-			Controller.call(v, Controller.SUBTITLES_PREVIEW);
+			c.subtitlesPreview();
 		}
 	}
 

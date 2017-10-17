@@ -14,8 +14,8 @@ import org.net.perorin.swingParts.parts.CeCommon;
 
 public class BootingWindow {
 
-	private static final String IMG_PATH = "./img/parts/booting.png";
-	private static final String IMG_BACK_PATH = "./img/parts/bootingBack.png";
+	private static final String IMG_PATH = "./META-INF/img/parts/booting.png";
+	private static final String IMG_BACK_PATH = "./META-INF/img/parts/bootingBack.png";
 
 	Window window;
 	Window windowBack;

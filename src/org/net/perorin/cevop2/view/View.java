@@ -3,7 +3,6 @@ package org.net.perorin.cevop2.view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -39,11 +38,13 @@ import org.net.perorin.swingParts.parts.CeScrollPane;
 import org.net.perorin.swingParts.parts.CeTextArea;
 import org.net.perorin.swingParts.parts.CeTextField;
 import org.net.perorin.swingParts.parts.stringLimitation.TabCharLimitation;
-import org.net.perorin.toolkit.FileOperator;
+import org.net.perorin.toolkit.FileUtils;
 
 public class View {
 
 	public View self;
+
+	public Controller c;
 	public Color fontColor;
 	public Color edgeColor;
 	public Font font;
@@ -52,7 +53,7 @@ public class View {
 	public int i;
 
 	public JFrame frame; // フレーム
-	public org.net.perorin.swingParts.parts.CeScrollPane textAreaScroll; // テキストエリアのスクロールバー
+	public CeScrollPane textAreaScroll; // テキストエリアのスクロールバー
 	public CeTextArea txtArea; // テキストエリア
 	public CeButton btnVoiceListen; // 試聴
 	public CeButton btnVoiceSave; // 音声保存
@@ -98,25 +99,13 @@ public class View {
 	public CePanel pnlSubtitlesFile;
 	public CeFileIcon lblSubtitlesFile;
 
-	public static void run() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					View window = new View();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public View() {
+	public View(Controller c) {
 		initialize();
-		Controller.call(this, Controller.INIT);
+		this.c = c;
 	}
 
 	private void initialize() {
+
 		self = this;
 
 		frame = new JFrame();
@@ -126,8 +115,8 @@ public class View {
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBackground(CeCommon.colorBackground);
 		frame.setFocusTraversalPolicy(new CeFocusPolicy());
+		frame.setTitle("CeVOP V2");
 		frame.setIconImage(new ImageIcon(CeCommon.iconPath).getImage());
-		frame.setTitle(CeCommon.title);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(CeCommon.colorBackground);
@@ -166,16 +155,16 @@ public class View {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.PRESET_SAVE);
+				c.presetSave();
 			}
 		});
 		mnEdit.add(mntmPresetSave);
 
-		JMenuItem mntmConfig = new JMenuItem("設定");
-		mntmConfig.setForeground(CeCommon.colorFontInactive);
-		mntmConfig.setBackground(CeCommon.colorTextBackground);
-		mntmConfig.setFont(new Font("メイリオ", Font.PLAIN, 12));
-		mnEdit.add(mntmConfig);
+//		JMenuItem mntmConfig = new JMenuItem("設定");
+//		mntmConfig.setForeground(CeCommon.colorFontInactive);
+//		mntmConfig.setBackground(CeCommon.colorTextBackground);
+//		mntmConfig.setFont(new Font("メイリオ", Font.PLAIN, 12));
+//		mnEdit.add(mntmConfig);
 
 		JMenu mnBoot = new JMenu("起動");
 		mnBoot.setForeground(CeCommon.colorFontInactive);
@@ -190,7 +179,7 @@ public class View {
 		mntmBootCeVIO.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_CEVIO);
+				c.bootCevio();
 			}
 		});
 		mnBoot.add(mntmBootCeVIO);
@@ -202,7 +191,7 @@ public class View {
 		mntmBootYukari.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_YUKARI);
+				c.bootVoiceroid("結月ゆかり");
 			}
 		});
 		mnBoot.add(mntmBootYukari);
@@ -214,7 +203,7 @@ public class View {
 		mntmBootMaki.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_MAKI);
+				c.bootVoiceroid("弦巻マキ");
 			}
 		});
 		mnBoot.add(mntmBootMaki);
@@ -226,7 +215,7 @@ public class View {
 		mntmBootZunko.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_ZUNKO);
+				c.bootVoiceroid("東北ずん子");
 			}
 		});
 		mnBoot.add(mntmBootZunko);
@@ -238,7 +227,7 @@ public class View {
 		mntmBootAkane.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_AKANE);
+				c.bootVoiceroid("琴葉茜");
 			}
 		});
 		mnBoot.add(mntmBootAkane);
@@ -250,14 +239,52 @@ public class View {
 		mntmBootAoi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.call(self, Controller.BOOT_AOI);
+				c.bootVoiceroid("琴葉葵");
 			}
 		});
 		mnBoot.add(mntmBootAoi);
 
+		JMenuItem mntmBootYoshida = new JMenuItem("吉田くん");
+		mntmBootYoshida.setForeground(CeCommon.colorFontInactive);
+		mntmBootYoshida.setBackground(CeCommon.colorTextBackground);
+		mntmBootYoshida.setFont(new Font("メイリオ", Font.PLAIN, 12));
+		mntmBootYoshida.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.bootVoiceroid("吉田くん");
+			}
+		});
+		mnBoot.add(mntmBootYoshida);
+
+		JMenuItem mntmBootSeika = new JMenuItem("京町セイカ");
+		mntmBootSeika.setForeground(CeCommon.colorFontInactive);
+		mntmBootSeika.setBackground(CeCommon.colorTextBackground);
+		mntmBootSeika.setFont(new Font("メイリオ", Font.PLAIN, 12));
+		mntmBootSeika.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.bootVoiceroid("京町セイカ");
+			}
+		});
+		mnBoot.add(mntmBootSeika);
+
+		JMenuItem mntmBootKiritan = new JMenuItem("東北きりたん");
+		mntmBootKiritan.setForeground(CeCommon.colorFontInactive);
+		mntmBootKiritan.setBackground(CeCommon.colorTextBackground);
+		mntmBootKiritan.setFont(new Font("メイリオ", Font.PLAIN, 12));
+		mntmBootKiritan.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.bootVoiceroid("東北きりたん");
+			}
+		});
+		mnBoot.add(mntmBootKiritan);
+
 		txtArea = new CeTextArea();
 		txtArea.setBounds(20, 10, 410, 176);
 		txtArea.setFocusImage(frame);
+		txtArea.setLineWrap(true);
+		txtArea.setWrapStyleWord(true);
 		txtArea.setFont(new Font("メイリオ", Font.PLAIN, 20));
 		textAreaScroll = CeScrollPane.setScrollBar(txtArea);
 		textAreaScroll.setBounds(20, 10, 410, 176);
@@ -267,7 +294,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.VOICE_LISTEN);
+				c.voiceListen();
 			}
 		};
 		btnVoiceListen.setFontSize(18);
@@ -279,7 +306,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.VOICE_SAVE);
+				c.voiceSave();
 			}
 		};
 		btnVoiceSave.setFontSize(18);
@@ -312,7 +339,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.FONT_COLOR);
+				c.fontColor();
 			}
 		};
 		btnFontColor.setBounds(30, 372, 100, 28);
@@ -323,7 +350,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.EDGE_COLOR);
+				c.edgeColor();
 			}
 		};
 		btnEdgeColor.setBounds(136, 372, 100, 28);
@@ -334,7 +361,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.SUBTITLES_PREVIEW);
+				c.subtitlesPreview();
 			}
 		};
 		btnSubtitlesPreview.setFontSize(16);
@@ -346,7 +373,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.SUBTITLES_SAVE);
+				c.subtitlesSave();
 			}
 		};
 		btnSubtitlesSave.setFontSize(16);
@@ -372,12 +399,14 @@ public class View {
 		txtfldFontSize.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldFontSize.setBounds(355, 363, 75, 21);
 		txtfldFontSize.setFocusImage(frame);
+		txtfldFontSize.enableInputMethods(false);
 		frame.getContentPane().add(txtfldFontSize);
 
 		txtfldEdgeSize = new CeTextField();
 		txtfldEdgeSize.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldEdgeSize.setBounds(355, 393, 75, 21);
 		txtfldEdgeSize.setFocusImage(frame);
+		txtfldEdgeSize.enableInputMethods(false);
 		frame.getContentPane().add(txtfldEdgeSize);
 
 		txtfldOutPath = new CeTextField() {
@@ -394,7 +423,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				File file = FileOperator.getPath("出力フォルダを選択", FileOperator.DIRECTORIES_ONLY);
+				File file = FileUtils.getPath("出力フォルダを選択", FileUtils.DIRECTORIES_ONLY);
 				txtfldOutPath.setText(file.getPath());
 			}
 		};
@@ -406,7 +435,7 @@ public class View {
 		comboCast = new CeCombo() {
 			@Override
 			public void itemStateChanged() {
-				Controller.call(self, Controller.CAST_CHANGE);
+				c.castChange();
 			};
 		};
 		comboCast.setBounds(456, 10, 140, 23);
@@ -481,54 +510,63 @@ public class View {
 		txtfldSize.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldSize.setBounds(516, 38, 73, 22);
 		txtfldSize.setFocusImage(frame);
+		txtfldSize.enableInputMethods(false);
 		frame.getContentPane().add(txtfldSize);
 
 		txtfldSpeed = new CeTextField();
 		txtfldSpeed.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldSpeed.setBounds(516, 63, 73, 22);
 		txtfldSpeed.setFocusImage(frame);
+		txtfldSpeed.enableInputMethods(false);
 		frame.getContentPane().add(txtfldSpeed);
 
 		txtfldTone = new CeTextField();
 		txtfldTone.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldTone.setBounds(516, 88, 73, 22);
 		txtfldTone.setFocusImage(frame);
+		txtfldTone.enableInputMethods(false);
 		frame.getContentPane().add(txtfldTone);
 
 		txtfldToneScale = new CeTextField();
 		txtfldToneScale.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldToneScale.setBounds(516, 113, 73, 22);
 		txtfldToneScale.setFocusImage(frame);
+		txtfldToneScale.enableInputMethods(false);
 		frame.getContentPane().add(txtfldToneScale);
 
 		txtfldAlpha = new CeTextField();
 		txtfldAlpha.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldAlpha.setBounds(516, 138, 73, 22);
 		txtfldAlpha.setFocusImage(frame);
+		txtfldAlpha.enableInputMethods(false);
 		frame.getContentPane().add(txtfldAlpha);
 
 		txtfldParameter1 = new CeTextField();
 		txtfldParameter1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldParameter1.setBounds(516, 163, 73, 22);
 		txtfldParameter1.setFocusImage(frame);
+		txtfldParameter1.enableInputMethods(false);
 		frame.getContentPane().add(txtfldParameter1);
 
 		txtfldParameter2 = new CeTextField();
 		txtfldParameter2.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldParameter2.setBounds(516, 188, 73, 22);
 		txtfldParameter2.setFocusImage(frame);
+		txtfldParameter2.enableInputMethods(false);
 		frame.getContentPane().add(txtfldParameter2);
 
 		txtfldParameter3 = new CeTextField();
 		txtfldParameter3.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldParameter3.setBounds(516, 213, 73, 22);
 		txtfldParameter3.setFocusImage(frame);
+		txtfldParameter3.enableInputMethods(false);
 		frame.getContentPane().add(txtfldParameter3);
 
 		txtfldParameter4 = new CeTextField();
 		txtfldParameter4.setHorizontalAlignment(SwingConstants.CENTER);
 		txtfldParameter4.setBounds(516, 238, 73, 22);
 		txtfldParameter4.setFocusImage(frame);
+		txtfldParameter4.enableInputMethods(false);
 		frame.getContentPane().add(txtfldParameter4);
 
 		pnlCast = new CePanel();
@@ -556,7 +594,7 @@ public class View {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Controller.call(self, Controller.VOICEROID_ACTIVE);
+				c.voiceroidActive();
 			}
 		});
 		pnlCast.add(lblCast);
@@ -589,7 +627,7 @@ public class View {
 			@Override
 			public void mouseClicked() {
 				super.mouseClicked();
-				Controller.call(self, Controller.ALL_SAVE);
+				c.allSave();
 			}
 		};
 		btnAllSave.setFontSize(16);
